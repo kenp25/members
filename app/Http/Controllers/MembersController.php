@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Guardian;
 use App\Member;
+use App\TechCampYear;
 use Illuminate\Http\Request;
 
 class MembersController extends Controller
 {
     public function index()
     {
-        return view('member');
+        $camp_years = TechCampYear::all();
+        return view('member', ['camp_years' => $camp_years]);
     }
 
 
