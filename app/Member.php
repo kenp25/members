@@ -19,4 +19,19 @@ class Member extends Model
 
 
     ];
+
+    public function getFullName()
+    {
+        return $this->firstname . " " . $this->lastname;
+    }
+
+    public function guardian()
+    {
+        return $this->hasOne(Guardian::class);
+    }
+
+    public function referee()
+    {
+        return $this->hasOne(Referee::class);
+    }
 }

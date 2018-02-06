@@ -31,6 +31,8 @@ class CreateMembersTable extends Migration
             $table->boolean('exhibited_at_event')->nullable();
             $table->integer('how_you_know_op')->nullable();
             $table->boolean('attended_our_techcamp')->nullable();
+            $table->text('knowledgeable_about')->nullable();
+            $table->text('want_to_learn')->nullable();
             $table->timestamps();
         });
     }

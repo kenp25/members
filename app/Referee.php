@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Referee extends Model
 {
-    protected $fillable = [];
+    protected $fillable = ['name', 'email', 'phone', 'member_id'];
 
     public function member()
     {

@@ -30,7 +30,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="dob">Date of Birth</label>
-                                <input type="datetime-local" class="form-control" name="dob">
+                                <input type="date" class="form-control" name="dob">
                             </div>
 
                         </div>
@@ -195,7 +195,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="attended_tech_camp">Have you ever Attended a Tech Camp</label>
-                                <input type="radio" class="" name="attended_tech_camp" value="0"> No
+                                <input type="radio" class="" name="attended_tech_camp" value="0" checked="checked"> No
                                 <input type="radio" class="" name="attended_tech_camp" value="1"> Yes
 
                             </div>
@@ -203,24 +203,24 @@
                         </div>
                     </div>
 
-                    <div class="row">
+{{--                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" name="email">
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="o_p_knowledge">How did you know O&P</label>
-                                <input type="checkbox" name="o_pPknowledge[]" value="1"> Radio
-                                <input type="checkbox" name="o_pPknowledge[]" value="2"> School
-                                <input type="checkbox" name="o_pPknowledge[]" value="3"> Social Media
-                                <input type="checkbox" name="o_pPknowledge[]" value="4"> Friends & Family
-                                <input type="checkbox" name="o_pPknowledge[]" value="5"> Others
+                                <input type="checkbox" name="o_p_knowledge[]" value="1"> Radio
+                                <input type="checkbox" name="o_p_knowledge[]" value="2"> School
+                                <input type="checkbox" name="o_p_knowledge[]" value="3"> Social Media
+                                <input type="checkbox" name="o_p_knowledge[]" value="4"> Friends & Family
+                                <input type="checkbox" name="o_p_knowledge[]" value="5"> Others
 
                             </div>
                         </div>
@@ -251,15 +251,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="expertise">I can be an Expert on....</label>
-                        <textarea name="expertise" id="" cols="30" rows="10" class="form-control" placeholder="Expertise">
+                        <label for="knowledge">I can be an Expert on....</label>
+                        <textarea name="knowledge" id="" cols="30" rows="10" class="form-control" placeholder="Expertise">
                         </textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="want_to_learn">I’d like to learn more about …</label>
                         <textarea name="want_to_learn" id="" cols="30" rows="10" class="form-control" placeholder="I would Like to Learn More about....">
-                        </textarea>
+                        </textarea>opKnowledge
                     </div>
 
                     <label for="expertise[]">Area to incorporate in project</label>
@@ -443,15 +443,36 @@
 
         $('body').on('click', '#submit', function () {
             var lastly = {};
-            $('#last :input').not('#submit').each(function () {
-                var key = $(this).attr('name');
-                var val = $(this).val();
-                item = {};
-                item [key] = val;
 
-                lastly[key] = val;
+            //var checked_site_radio = $('input:radio[name=user_site]:checked').val();
+            var attendEvents = $('input:radio[name=attend_events]:checked').val()
+            var attendedTechCamp = $('input:radio[name=attended_tech_camp]:checked').val()
+            var opKnowledge = []
+            var expertise = []
+            var campYears = []
+            var knowledge = $('textarea[name=knowledge]').val()
+            var wantToLearn = $('textarea[name=want_to_learn]').val()
 
+
+            $('input[name="o_p_knowledge[]"]:checked').each(function(){
+                opKnowledge.push($(this).val());
             });
+
+            $("input[name='camp_years[]']:checked").each(function(){
+                campYears.push($(this).val());
+            });
+
+            $('input[name="expertise[]"]:checked').each(function () {
+                expertise.push($(this).val())
+            })
+
+            lastly['attendedEvents'] = attendEvents
+            lastly['attendedTechCamp'] = attendedTechCamp
+            lastly['opKnowledge'] = opKnowledge
+            lastly['campYears'] = campYears
+            lastly['expertise'] = expertise
+            lastly['knowledge'] = knowledge
+            lastly['wantToLearn'] = wantToLearn
 
             inputs['lastly'] = lastly
             console.log(inputs)
