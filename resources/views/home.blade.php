@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         @foreach($members as $member)
-            <li><a href="{{ url('/member/'.$member->id) }}">{{$member->getFullName()}}</a></li>
+            <li><a href="{{ url('/members/'.$member->id) }}">{{$member->getFullName()}}</a></li>
         @endforeach
         {{--<div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">

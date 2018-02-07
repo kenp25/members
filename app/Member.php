@@ -34,4 +34,14 @@ class Member extends Model
     {
         return $this->hasOne(Referee::class);
     }
+
+    public function expertises()
+    {
+        return $this->hasMany(Expertise::class);
+    }
+
+    public function opKnowledge()
+    {
+        return $this->hasMany(OpKnowledge::class);
+    }
 }

@@ -28,6 +28,32 @@
             <div>
                 Best Time to reach you: {{ $member->time_to_reach_you }}
             </div>
+
+            <div>
+                What you want to learn: {{ $member->want_to_learn }}
+            </div>
+
+            <div>
+                Knowledgeable about: {{ $member->knowledgeable_about }}
+            </div>
+
+            <div>
+                <h3>What to Include in Final Project</h3>
+                <ul>
+                    @foreach($member->expertises as $expertise)
+                        <li>{{ $expertise->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div>
+                <h3>How did you know about O & P</h3>
+                <ul>
+                    @foreach($member->opKnowledge as $knowledge)
+                        <li>{{ $knowledge->channel->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
 
         <div class="row">
